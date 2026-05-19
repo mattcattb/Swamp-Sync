@@ -1,87 +1,76 @@
 # Swamp Sync
-Full Stack application designed for scheduling times to meet with your friends and colleagues, even if everyone has a busy schedule. Built with the mern stack for Fall Intro to Software Engineering class at University of Florida.
 
-![homepage image](/assets/landing-page.png)
+A full-stack scheduling app for finding shared meeting times across busy groups.
 
-## Project Overview
+![Swamp Sync calendar dashboard](docs/images/swamp-sync.png)
 
-Swamp-Sync is a social-media-like platform that simplifies the process of scheduling meetings. Users can manage their schedules, create events, and find common meeting times with friends.
+## About
 
-## Features and Functionality
-* Full Authentication and Database Storage with MongoDB.
-* User Login verified with JWT Token authentication system.
-* Generate personal schedules for users stored in backend.
-* Create, Edit, and Delete Events for Users and display them in calendar view
-* Create meetings and invite users using friend codes, allowing users to accept or deny invites.
-* Manage added users and remove them if needed.
-* Displays the best time for all users to meet.
+Swamp Sync is a MERN app built for a University of Florida software engineering course. It lets users create schedules, invite friends by code, manage meeting invitations, and calculate the best overlapping time for a group to meet.
 
 ## Tech Stack
 
-**Backend:** Node.js, Express.js
-**Frontend:** React, Material UI, Tailwind
-**Database:** MongoDB
-**Containerization:** Docker, Docker Compose
+- React
+- Material UI
+- Tailwind CSS
+- Node.js
+- Express
+- MongoDB
+- JWT authentication
+- Docker Compose
 
-## Building & Running
+## Features
 
-### Prerequisites
-* **Docker Compose**: On Windows, Docker Compose comes with Docker Engine. On Linux, it can be installed manually. See https://docs.docker.com/engine/install/ubuntu/.
+- Account registration, login, and JWT-backed sessions.
+- Personal schedule creation and storage.
+- Calendar-based event creation, editing, and deletion.
+- Meeting invites through friend codes.
+- Friend and invite management.
+- Shared availability search for group meetings.
 
-### Setup Instructions
+## My Role
 
-1. **Clone Repo**
+I worked across the React frontend, Express API, MongoDB data model, authentication flow, Docker setup, and group scheduling behavior.
 
-2. **Set Enviroment Configurations**
-* Create '.env' file in /wtm-express/ with the following:
-```plaintext
+## Running Locally
+
+```bash
+git clone https://github.com/mattcattb/Swamp-Sync.git
+cd Swamp-Sync
+```
+
+Create `wtm-express/.env`:
+
+```env
 MONGO_INITDB_ROOT_USERNAME=rootuser
 MONGO_INITDB_ROOT_PASSWORD=rootpass
 MONGO_URI=mongodb://rootuser:rootpass@wtm-mongodb:27017/admin
 LOCAL_MONGO_URI=mongodb://rootuser:rootpass@localhost:12345/admin
 MONGO_INITDB_DATABASE=lamdb
 PORT=3004
-JWT_SECRET=pAonqkN/rorjS7sXd3ngJHXZJ8bjWVIMA9ZmJPRET8o=
+JWT_SECRET=replace-with-a-local-secret
 ```
 
-3. **Build and Start Project**
-```sh
-docker compose up --build d
+Run the full stack with Docker:
+
+```bash
+docker compose up --build -d
 ```
-This command starts the wtm-mongodb, wtm-react, wtm-express containers, and establishes a network between them
 
-### Local Setup
+Or run MongoDB through Docker and start each app manually:
 
-1. Make sure mongodb container is running:
-```sh
+```bash
 docker compose up wtm-mongodb -d
-```
 
-2. create .env file
-``` bash
 cd wtm-express
-```
-.env file should look like 
-```
-MONGO_INITDB_ROOT_USERNAME=rootuser
-MONGO_INITDB_ROOT_PASSWORD=rootpass
-MONGO_URI=mongodb://rootuser:rootpass@wtm-mongodb:27017/admin
-LOCAL_MONGO_URI=mongodb://rootuser:rootpass@localhost:12345/admin
-MONGO_INITDB_DATABASE=lamdb
-PORT=3004
-JWT_SECRET=pAonqkN/rorjS7sXd3ngJHXZJ8bjWVIMA9ZmJPRET8o=
-```
+npm install
+npm start
 
-3. install dependencies and start server
-```bash
-cd wtm-express
+cd ../wtm-react
 npm install
 npm start
 ```
 
-4. go to frontend and startup servers 
-```bash
-cd wtm-react
-npm install
-npm start
-```
+## Project Notes
+
+This repo is an older class project, so the code favors direct feature delivery over framework-level polish. The useful parts to look at are the schedule data model, meeting invite flow, and the availability matching logic.
