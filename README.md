@@ -1,23 +1,18 @@
 # Swamp Sync
 
-A full-stack scheduling app for finding shared meeting times across busy groups.
+Swamp Sync is a full-stack scheduling app for finding shared meeting times across busy groups.
+
+## Screenshots
 
 ![Swamp Sync calendar dashboard](docs/images/swamp-sync.png)
 
-## About
-
-Swamp Sync is a MERN app built for a University of Florida software engineering course. It lets users create schedules, invite friends by code, manage meeting invitations, and calculate the best overlapping time for a group to meet.
-
 ## Tech Stack
 
-- React
-- Material UI
-- Tailwind CSS
-- Node.js
-- Express
-- MongoDB
-- JWT authentication
-- Docker Compose
+- Frontend: React, Material UI, Tailwind CSS
+- Backend: Node.js, Express
+- Database: MongoDB, Mongoose
+- Auth: JWT-based login and protected routes
+- Tooling: Docker Compose, npm
 
 ## Features
 
@@ -28,9 +23,32 @@ Swamp Sync is a MERN app built for a University of Florida software engineering 
 - Friend and invite management.
 - Shared availability search for group meetings.
 
+## Why I Built This
+
+This was built for a University of Florida software engineering course as a practical take on the classic "when can everyone meet?" problem. The goal was to make scheduling feel more social and persistent than sending one-off availability links.
+
 ## My Role
 
 I worked across the React frontend, Express API, MongoDB data model, authentication flow, Docker setup, and group scheduling behavior.
+
+## Architecture
+
+- `wtm-react` owns the browser UI, schedule editing, calendar presentation, and meeting flows.
+- `wtm-express` owns authentication, user data, friend relationships, meetings, and schedule persistence.
+- MongoDB stores users, schedules, events, friends, and meeting invite state.
+- Docker Compose runs the frontend, backend, and MongoDB together for local development.
+
+## Hard Parts
+
+- Modeling schedule availability in a way that could support both personal calendars and group meeting search.
+- Keeping invite, friend, and meeting state consistent across multiple users.
+- Making the project runnable for a team with Docker while still supporting local frontend/backend development.
+
+## What I Learned
+
+- Full-stack scheduling apps need clear boundaries between calendar UI state and backend availability calculations.
+- Auth and invite flows become easier to reason about when the API owns session and relationship state.
+- Docker Compose is useful for class/team projects because it removes a lot of local setup drift.
 
 ## Running Locally
 
@@ -73,4 +91,4 @@ npm start
 
 ## Project Notes
 
-This repo is an older class project, so the code favors direct feature delivery over framework-level polish. The useful parts to look at are the schedule data model, meeting invite flow, and the availability matching logic.
+This repo is an older class project, so the code favors direct feature delivery over framework-level polish. The useful parts to look at are the schedule data model, meeting invite flow, and availability matching logic.
